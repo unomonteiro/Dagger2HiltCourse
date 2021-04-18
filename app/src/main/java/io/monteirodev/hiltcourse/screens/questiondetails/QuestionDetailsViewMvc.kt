@@ -4,18 +4,20 @@ import android.content.Context
 import android.os.Build
 import android.text.Html
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.annotation.IdRes
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import io.monteirodev.hiltcourse.R
 import io.monteirodev.hiltcourse.screens.common.toolbar.MyToolbar
+import io.monteirodev.hiltcourse.screens.common.viewsmvc.BaseViewMvc
 
 class QuestionDetailsViewMvc(
         layoutInflater: LayoutInflater,
         parent: ViewGroup?
-) {
+): BaseViewMvc<QuestionDetailsViewMvc.Listener>(
+        layoutInflater,
+        parent,
+        R.layout.layout_question_details) {
 
     interface Listener {
         fun onBackClicked()
@@ -24,12 +26,6 @@ class QuestionDetailsViewMvc(
     private val toolbar: MyToolbar
     private val swipeRefresh: SwipeRefreshLayout
     private val txtQuestionBody: TextView
-
-    val rootView : View = layoutInflater.inflate(R.layout.layout_question_details, parent, false)
-
-    private val context: Context get() = rootView.context
-
-    private val listeners = HashSet<Listener>()
 
     init {
 
@@ -63,18 +59,6 @@ class QuestionDetailsViewMvc(
 
     fun hideProgressIndication() {
         swipeRefresh.isRefreshing = false
-    }
-
-    fun <T: View?> findViewById(@IdRes id: Int): T {
-        return rootView.findViewById<T>(id)
-    }
-
-    fun registerListener(listener: Listener) {
-        listeners.add(listener)
-    }
-
-    fun unregisterListener(listener: Listener) {
-        listeners.remove(listener)
     }
 
 }
