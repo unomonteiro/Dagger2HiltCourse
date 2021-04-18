@@ -5,12 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
-import io.monteirodev.hiltcourse.Constants
-import io.monteirodev.hiltcourse.networking.StackoverflowApi
+import io.monteirodev.hiltcourse.questions.FetchQuestionDetailsUseCase
+import io.monteirodev.hiltcourse.questions.FetchQuestionsUseCase
 import io.monteirodev.hiltcourse.screens.common.dialogs.ServerErrorDialogFragment
 import kotlinx.coroutines.*
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.Listener {
 
@@ -18,7 +16,7 @@ class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.List
 
     private lateinit var viewMvc: QuestionDetailsViewMvc
 
-    private lateinit var stackoverflowApi: StackoverflowApi
+    private lateinit var fetchQuestionDetailsUseCase: FetchQuestionDetailsUseCase
 
     private lateinit var questionId: String
 
@@ -29,15 +27,12 @@ class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.List
 
         setContentView(viewMvc.rootView)
 
-        // init retrofit
-        val retrofit = Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-        stackoverflowApi = retrofit.create(StackoverflowApi::class.java)
+        fetchQuestionDetailsUseCase = FetchQuestionDetailsUseCase()
 
         // retrieve question ID passed from outside
         questionId = intent.extras!!.getString(EXTRA_QUESTION_ID)!!
+
+
     }
 
     override fun onStart() {
@@ -56,16 +51,12 @@ class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.List
         coroutineScope.launch {
             viewMvc.showProgressIndication()
             try {
-                val response = stackoverflowApi.questionDetails(questionId)
-                if (response.isSuccessful && response.body() != null) {
-                    val questionBody = response.body()!!.question.body
-                    viewMvc.bindQuestionBody(questionBody)
-                } else {
-                    onFetchFailed()
-                }
-            } catch (t: Throwable) {
-                if (t !is CancellationException) {
-                    onFetchFailed()
+                val result = fetchQuestionDetailsUseCase.fetchQuestionDetails(questionId)
+                when (result) {
+                    is FetchQuestionDetailsUseCase.Result.Success -> {
+                        viewMvc.bindQuestionBody(result.question.body)
+                    }
+                    is FetchQuestionDetailsUseCase.Result.Failure -> onFetchFailed()
                 }
             } finally {
                 viewMvc.hideProgressIndication()
