@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import io.monteirodev.hiltcourse.questions.FetchQuestionsUseCase
 import io.monteirodev.hiltcourse.questions.Question
-import io.monteirodev.hiltcourse.screens.common.dialogs.ServerErrorDialogFragment
+import io.monteirodev.hiltcourse.screens.common.dialogs.DialogsNavigator
 import io.monteirodev.hiltcourse.screens.questiondetails.QuestionDetailsActivity
 import kotlinx.coroutines.*
 
@@ -19,6 +19,8 @@ class QuestionsListActivity : AppCompatActivity(), QuestionsListViewMvc.Listener
 
     private lateinit var fetchQuestionsUseCase: FetchQuestionsUseCase
 
+    private lateinit var dialogsNavigator: DialogsNavigator
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -26,6 +28,8 @@ class QuestionsListActivity : AppCompatActivity(), QuestionsListViewMvc.Listener
         setContentView(viewMvc.rootView)
 
         fetchQuestionsUseCase = FetchQuestionsUseCase()
+
+        dialogsNavigator = DialogsNavigator(supportFragmentManager)
     }
 
     override fun onStart() {
@@ -65,10 +69,7 @@ class QuestionsListActivity : AppCompatActivity(), QuestionsListViewMvc.Listener
     }
 
     private fun onFetchFailed() {
-        supportFragmentManager.beginTransaction()
-                .add(ServerErrorDialogFragment.newInstance(), null)
-                .commitAllowingStateLoss()
-
+        dialogsNavigator.showServerErrorDialog()
     }
 
     override fun onQuestionClicked(clickedQuestion: Question) {

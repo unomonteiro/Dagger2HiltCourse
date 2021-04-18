@@ -6,8 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import io.monteirodev.hiltcourse.questions.FetchQuestionDetailsUseCase
-import io.monteirodev.hiltcourse.questions.FetchQuestionsUseCase
-import io.monteirodev.hiltcourse.screens.common.dialogs.ServerErrorDialogFragment
+import io.monteirodev.hiltcourse.screens.common.dialogs.DialogsNavigator
 import kotlinx.coroutines.*
 
 class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.Listener {
@@ -17,6 +16,8 @@ class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.List
     private lateinit var viewMvc: QuestionDetailsViewMvc
 
     private lateinit var fetchQuestionDetailsUseCase: FetchQuestionDetailsUseCase
+
+    private lateinit var dialogsNavigator: DialogsNavigator
 
     private lateinit var questionId: String
 
@@ -28,6 +29,8 @@ class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.List
         setContentView(viewMvc.rootView)
 
         fetchQuestionDetailsUseCase = FetchQuestionDetailsUseCase()
+
+        dialogsNavigator = DialogsNavigator(supportFragmentManager)
 
         // retrieve question ID passed from outside
         questionId = intent.extras!!.getString(EXTRA_QUESTION_ID)!!
@@ -65,9 +68,7 @@ class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.List
     }
 
     private fun onFetchFailed() {
-        supportFragmentManager.beginTransaction()
-                .add(ServerErrorDialogFragment.newInstance(), null)
-                .commitAllowingStateLoss()
+        dialogsNavigator.showServerErrorDialog()
     }
 
     override fun onBackClicked() {
