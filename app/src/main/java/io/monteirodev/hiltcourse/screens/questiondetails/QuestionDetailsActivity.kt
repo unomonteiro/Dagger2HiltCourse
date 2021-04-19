@@ -4,14 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import androidx.appcompat.app.AppCompatActivity
-import io.monteirodev.hiltcourse.MyApplication
 import io.monteirodev.hiltcourse.questions.FetchQuestionDetailsUseCase
+import io.monteirodev.hiltcourse.screens.common.BaseActivity
 import io.monteirodev.hiltcourse.screens.common.ScreensNavigator
 import io.monteirodev.hiltcourse.screens.common.dialogs.DialogsNavigator
 import kotlinx.coroutines.*
 
-class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.Listener {
+class QuestionDetailsActivity : BaseActivity(), QuestionDetailsViewMvc.Listener {
 
     private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
@@ -32,7 +31,7 @@ class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.List
 
         setContentView(viewMvc.rootView)
 
-        fetchQuestionDetailsUseCase = (application as MyApplication).fetchQuestionDetailsUseCase
+        fetchQuestionDetailsUseCase = compositionRoot.fetchQuestionDetailsUseCase
 
         screensNavigator = ScreensNavigator(this)
 
