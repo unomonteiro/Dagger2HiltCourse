@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import io.monteirodev.hiltcourse.questions.FetchQuestionDetailsUseCase
-import io.monteirodev.hiltcourse.screens.common.BaseActivity
+import io.monteirodev.hiltcourse.screens.common.activities.BaseActivity
 import io.monteirodev.hiltcourse.screens.common.ScreensNavigator
 import io.monteirodev.hiltcourse.screens.common.dialogs.DialogsNavigator
 import kotlinx.coroutines.*
@@ -33,7 +33,7 @@ class QuestionDetailsActivity : BaseActivity(), QuestionDetailsViewMvc.Listener 
 
         fetchQuestionDetailsUseCase = compositionRoot.fetchQuestionDetailsUseCase
 
-        screensNavigator = ScreensNavigator(this)
+        screensNavigator = compositionRoot.screensNavigator
 
         dialogsNavigator = DialogsNavigator(supportFragmentManager)
 

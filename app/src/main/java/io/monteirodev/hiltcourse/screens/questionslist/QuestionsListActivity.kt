@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import io.monteirodev.hiltcourse.questions.FetchQuestionsUseCase
 import io.monteirodev.hiltcourse.questions.Question
-import io.monteirodev.hiltcourse.screens.common.BaseActivity
+import io.monteirodev.hiltcourse.screens.common.activities.BaseActivity
 import io.monteirodev.hiltcourse.screens.common.ScreensNavigator
 import io.monteirodev.hiltcourse.screens.common.dialogs.DialogsNavigator
 import kotlinx.coroutines.*
@@ -33,7 +33,7 @@ class QuestionsListActivity : BaseActivity(), QuestionsListViewMvc.Listener {
 
         dialogsNavigator = DialogsNavigator(supportFragmentManager)
 
-        screensNavigator = ScreensNavigator(this)
+        screensNavigator = compositionRoot.screensNavigator
     }
 
     override fun onStart() {
