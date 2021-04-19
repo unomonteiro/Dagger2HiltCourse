@@ -2,6 +2,8 @@ package io.monteirodev.hiltcourse
 
 import android.app.Application
 import io.monteirodev.hiltcourse.networking.StackoverflowApi
+import io.monteirodev.hiltcourse.questions.FetchQuestionDetailsUseCase
+import io.monteirodev.hiltcourse.questions.FetchQuestionsUseCase
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -12,7 +14,11 @@ class MyApplication : Application() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-    public val stackoverflowApi: StackoverflowApi = retrofit.create(StackoverflowApi::class.java)
+    private val stackoverflowApi: StackoverflowApi = retrofit.create(StackoverflowApi::class.java)
+
+    public val fetchQuestionsUseCase get() = FetchQuestionsUseCase(stackoverflowApi)
+
+    public val fetchQuestionDetailsUseCase get() = FetchQuestionDetailsUseCase(stackoverflowApi)
 
     override fun onCreate() {
         super.onCreate()

@@ -32,7 +32,7 @@ class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.List
 
         setContentView(viewMvc.rootView)
 
-        fetchQuestionDetailsUseCase = FetchQuestionDetailsUseCase((application as MyApplication).stackoverflowApi)
+        fetchQuestionDetailsUseCase = (application as MyApplication).fetchQuestionDetailsUseCase
 
         screensNavigator = ScreensNavigator(this)
 
