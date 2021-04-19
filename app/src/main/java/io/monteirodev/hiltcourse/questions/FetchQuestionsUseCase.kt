@@ -4,16 +4,13 @@ import io.monteirodev.hiltcourse.networking.StackoverflowApi
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import retrofit2.Retrofit
 
-class FetchQuestionsUseCase(private val retrofit: Retrofit) {
+class FetchQuestionsUseCase(private val stackoverflowApi: StackoverflowApi) {
 
     sealed class Result {
         class Success(val questions: List<Question>) : Result()
         object Failure: Result()
     }
-
-    private val stackoverflowApi: StackoverflowApi = retrofit.create(StackoverflowApi::class.java)
 
     suspend fun fetchLatestQuestions(): Result {
         return withContext(Dispatchers.IO) {
