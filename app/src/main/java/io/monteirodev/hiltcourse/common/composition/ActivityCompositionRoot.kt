@@ -5,13 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import io.monteirodev.hiltcourse.screens.common.ScreensNavigator
 
 class ActivityCompositionRoot(
-        private val activity: AppCompatActivity,
+        val activity: AppCompatActivity,
         private val appCompositionRoot: AppCompositionRoot
 ) {
 
     val screensNavigator by lazy {
         ScreensNavigator(activity)
     }
+
+    val application get() = appCompositionRoot.application
 
     val layoutInflater get() = LayoutInflater.from(activity)
 
