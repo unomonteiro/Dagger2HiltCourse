@@ -11,4 +11,4 @@ class MyApplication : Application() {
         appCompositionRoot = AppCompositionRoot(this)
         super.onCreate()
     }
-}o
+}

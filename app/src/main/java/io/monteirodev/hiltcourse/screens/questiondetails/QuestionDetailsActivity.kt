@@ -3,6 +3,7 @@ package io.monteirodev.hiltcourse.screens.questiondetails
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import io.monteirodev.hiltcourse.common.dependencyinjection.Service
 import io.monteirodev.hiltcourse.questions.FetchQuestionDetailsUseCase
 import io.monteirodev.hiltcourse.screens.common.ScreensNavigator
 import io.monteirodev.hiltcourse.screens.common.activities.BaseActivity
@@ -14,10 +15,10 @@ class QuestionDetailsActivity : BaseActivity(), QuestionDetailsViewMvc.Listener 
 
     private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
-    lateinit var fetchQuestionDetailsUseCase: FetchQuestionDetailsUseCase
-    lateinit var dialogsNavigator: DialogsNavigator
-    lateinit var screensNavigator: ScreensNavigator
-    lateinit var viewMvcFactory: ViewMvcFactory
+    @field:Service private lateinit var fetchQuestionDetailsUseCase: FetchQuestionDetailsUseCase
+    @field:Service private lateinit var dialogsNavigator: DialogsNavigator
+    @field:Service private lateinit var screensNavigator: ScreensNavigator
+    @field:Service private lateinit var viewMvcFactory: ViewMvcFactory
 
     private lateinit var viewMvc: QuestionDetailsViewMvc
 
