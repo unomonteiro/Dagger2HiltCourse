@@ -1,4 +1,4 @@
-package io.monteirodev.hiltcourse.common.composition
+package io.monteirodev.hiltcourse.common.dependencyinjection
 
 import io.monteirodev.hiltcourse.questions.FetchQuestionDetailsUseCase
 import io.monteirodev.hiltcourse.questions.FetchQuestionsUseCase

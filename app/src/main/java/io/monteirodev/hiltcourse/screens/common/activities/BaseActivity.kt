@@ -2,8 +2,9 @@ package io.monteirodev.hiltcourse.screens.common.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import io.monteirodev.hiltcourse.MyApplication
-import io.monteirodev.hiltcourse.common.composition.ActivityCompositionRoot
-import io.monteirodev.hiltcourse.common.composition.PresentationCompositionRoot
+import io.monteirodev.hiltcourse.common.dependencyinjection.ActivityCompositionRoot
+import io.monteirodev.hiltcourse.common.dependencyinjection.Injector
+import io.monteirodev.hiltcourse.common.dependencyinjection.PresentationCompositionRoot
 
 open class BaseActivity: AppCompatActivity() {
 
@@ -13,9 +14,10 @@ open class BaseActivity: AppCompatActivity() {
         ActivityCompositionRoot(this, appCompositionRoot)
     }
 
-    protected val compositionRoot by lazy {
+    private val compositionRoot by lazy {
         PresentationCompositionRoot(activityCompositionRoot)
     }
 
+    protected val injector get() = Injector(compositionRoot)
 
 }

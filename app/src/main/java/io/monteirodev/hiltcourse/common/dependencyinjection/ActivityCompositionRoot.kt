@@ -1,4 +1,4 @@
-package io.monteirodev.hiltcourse.common.composition
+package io.monteirodev.hiltcourse.common.dependencyinjection
 
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity

@@ -1,7 +1,7 @@
 package io.monteirodev.hiltcourse
 
 import android.app.Application
-import io.monteirodev.hiltcourse.common.composition.AppCompositionRoot
+import io.monteirodev.hiltcourse.common.dependencyinjection.AppCompositionRoot
 
 class MyApplication : Application() {
 
@@ -11,4 +11,4 @@ class MyApplication : Application() {
         appCompositionRoot = AppCompositionRoot(this)
         super.onCreate()
     }
-}
+}o

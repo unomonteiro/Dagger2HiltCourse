@@ -1,4 +1,4 @@
-package io.monteirodev.hiltcourse.common.composition
+package io.monteirodev.hiltcourse.common.dependencyinjection
 
 import android.app.Application
 import androidx.annotation.UiThread
