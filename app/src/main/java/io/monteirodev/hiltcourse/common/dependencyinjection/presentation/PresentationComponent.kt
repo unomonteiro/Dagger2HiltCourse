@@ -1,4 +1,4 @@
-package io.monteirodev.hiltcourse.common.dependencyinjection
+package io.monteirodev.hiltcourse.common.dependencyinjection.presentation
 
 import dagger.Component
 import io.monteirodev.hiltcourse.questions.FetchQuestionDetailsUseCase

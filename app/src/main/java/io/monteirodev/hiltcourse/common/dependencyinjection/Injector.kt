@@ -1,5 +1,6 @@
 package io.monteirodev.hiltcourse.common.dependencyinjection
 
+import io.monteirodev.hiltcourse.common.dependencyinjection.presentation.PresentationComponent
 import io.monteirodev.hiltcourse.questions.FetchQuestionDetailsUseCase
 import io.monteirodev.hiltcourse.questions.FetchQuestionsUseCase
 import io.monteirodev.hiltcourse.screens.common.ScreensNavigator

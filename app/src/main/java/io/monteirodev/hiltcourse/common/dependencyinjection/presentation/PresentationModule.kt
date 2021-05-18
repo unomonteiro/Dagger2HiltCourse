@@ -1,9 +1,10 @@
-package io.monteirodev.hiltcourse.common.dependencyinjection
+package io.monteirodev.hiltcourse.common.dependencyinjection.presentation
 
 import android.view.LayoutInflater
 import androidx.fragment.app.FragmentManager
 import dagger.Module
 import dagger.Provides
+import io.monteirodev.hiltcourse.common.dependencyinjection.activity.ActivityComponent
 import io.monteirodev.hiltcourse.networking.StackoverflowApi
 import io.monteirodev.hiltcourse.questions.FetchQuestionDetailsUseCase
 import io.monteirodev.hiltcourse.questions.FetchQuestionsUseCase

@@ -1,4 +1,4 @@
-package io.monteirodev.hiltcourse.common.dependencyinjection
+package io.monteirodev.hiltcourse.common.dependencyinjection.app
 
 import android.app.Application
 import dagger.Component

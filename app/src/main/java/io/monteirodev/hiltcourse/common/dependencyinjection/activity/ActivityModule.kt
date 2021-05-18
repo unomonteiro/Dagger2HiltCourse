@@ -1,9 +1,10 @@
-package io.monteirodev.hiltcourse.common.dependencyinjection
+package io.monteirodev.hiltcourse.common.dependencyinjection.activity
 
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import dagger.Module
 import dagger.Provides
+import io.monteirodev.hiltcourse.common.dependencyinjection.app.AppComponent
 import io.monteirodev.hiltcourse.screens.common.ScreensNavigator
 
 @Module
