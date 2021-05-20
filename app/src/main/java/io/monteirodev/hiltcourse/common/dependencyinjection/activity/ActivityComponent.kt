@@ -7,6 +7,7 @@ import dagger.Component
 import io.monteirodev.hiltcourse.networking.StackoverflowApi
 import io.monteirodev.hiltcourse.screens.common.ScreensNavigator
 
+@ActivityScope
 @Component(modules = [ActivityModule::class])
 interface ActivityComponent {
 

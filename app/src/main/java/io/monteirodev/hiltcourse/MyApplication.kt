@@ -2,7 +2,7 @@ package io.monteirodev.hiltcourse
 
 import android.app.Application
 import io.monteirodev.hiltcourse.common.dependencyinjection.app.AppModule
-import io.monteirodev.hiltcourse.common.dependencyinjection.DaggerAppComponent
+import io.monteirodev.hiltcourse.common.dependencyinjection.app.DaggerAppComponent
 
 class MyApplication : Application() {
 

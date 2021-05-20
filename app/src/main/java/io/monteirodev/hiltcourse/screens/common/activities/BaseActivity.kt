@@ -2,8 +2,10 @@ package io.monteirodev.hiltcourse.screens.common.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import io.monteirodev.hiltcourse.MyApplication
-import io.monteirodev.hiltcourse.common.dependencyinjection.*
+import io.monteirodev.hiltcourse.common.dependencyinjection.Injector
 import io.monteirodev.hiltcourse.common.dependencyinjection.activity.ActivityModule
+import io.monteirodev.hiltcourse.common.dependencyinjection.activity.DaggerActivityComponent
+import io.monteirodev.hiltcourse.common.dependencyinjection.presentation.DaggerPresentationComponent
 import io.monteirodev.hiltcourse.common.dependencyinjection.presentation.PresentationModule
 
 open class BaseActivity: AppCompatActivity() {
